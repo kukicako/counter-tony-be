@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-    return knex.schema.createTable('form', tbl => {
+    return knex.schema.createTable('apply', tbl => {
       tbl.increments();
   
       tbl
@@ -17,10 +17,13 @@ exports.up = function(knex) {
       .string('steam', 255)
       .notNullable()
       .unique();
+      tbl
+      .string('questions', 500)
+      
       
     });
   };
   
   exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('form');
+    return knex.schema.dropTableIfExists('apply');
   };
