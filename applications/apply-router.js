@@ -46,4 +46,34 @@ router.post("/", (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  Application.deleteId(req.params.id)
+  .then(apply => {
+      console.log(apply)
+      if (!apply) {
+          res.status(404).json({message: " No application exists by that ID!"})
+      } else {
+          res.status(200).json({message: "deleted"})
+      }
+  })
+  .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+  })
+}) 
+
+router.delete("/", (req, res) => {
+  const apply = req.body;
+
+  Application.remove(apply)
+  .then(count => {
+    res.status(201).json(count);
+  })
+  .catch(err => {
+    res.status(500).json({ message: "Error deleting all applications to database" });
+  });
+    
+});
+
+
 module.exports = router; 

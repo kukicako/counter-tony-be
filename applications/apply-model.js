@@ -5,7 +5,9 @@ const db = require('../data/db-config')
 module.exports = {
     get,
     getById,
-    add
+    add,
+    deleteId,
+    remove
   };
   
   function get() {
@@ -13,9 +15,21 @@ module.exports = {
   }
   
   function getById(id) {
-    return db("apply").where({ id });
+    return db("apply")
+    .where({ id });
   }
   
-  function add(resource) {
-    return db("apply").insert(resource);
-  } 
+  function add(application) {
+    return db("apply")
+    .insert(application);
+  }
+
+function deleteId(id) {
+   return db('apply')
+   .where({ id })
+   .del();
+}
+function remove() {
+  return db('apply')
+   .del('Apply')
+}
