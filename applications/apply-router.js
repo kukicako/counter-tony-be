@@ -37,7 +37,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const apply = req.body;
 
-  Application.add(apply)
+  Application.insert(apply)
     .then(count => {
       res.status(201).json(count);
     })

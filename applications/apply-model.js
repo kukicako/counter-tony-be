@@ -5,7 +5,7 @@ const db = require('../data/db-config')
 module.exports = {
     get,
     getById,
-    add,
+    insert,
     deleteId,
     remove
   };
@@ -19,9 +19,13 @@ module.exports = {
     .where({ id });
   }
   
-  function add(application) {
-    return db("apply")
-    .insert(application);
+ async function insert(application) {
+    const [id] = await db('apply').insert(application, 'id');
+
+    return db('apply')
+    .where({id})
+    .first();
+
   }
 
 function deleteId(id) {
