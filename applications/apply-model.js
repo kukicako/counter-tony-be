@@ -11,29 +11,29 @@ module.exports = {
   };
   
   function get() {
-    return db("apply");
+    return db("applicate");
   }
   
   function getById(id) {
-    return db("apply")
+    return db("applicate")
     .where({ id });
   }
   
  async function insert(application) {
-    const [id] = await db('apply').insert(application, 'id');
+    const [id] = await db('applicate').insert(application, 'id');
 
-    return db('apply')
+    return db('applicate')
     .where({id})
     .first();
 
   }
 
 function deleteId(id) {
-   return db('apply')
+   return db('applicate')
    .where({ id })
    .del();
 }
 function remove() {
-  return db('apply')
-   .del('Apply')
+  return db('applicate')
+   .del('applicate')
 }

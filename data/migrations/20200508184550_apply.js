@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-    return knex.schema.createTable('apply', tbl => {
+    return knex.schema.createTable('applicate', tbl => {
       tbl.increments();
   
       tbl
@@ -10,6 +10,9 @@ exports.up = function(knex) {
         .notNullable()
       tbl
       .string('rank', 255)
+      .notNullable();
+      tbl
+      .string('aoi', 255)
       .notNullable();
       tbl
       .string('steam', 255)
@@ -23,5 +26,5 @@ exports.up = function(knex) {
   };
   
   exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('apply');
+    return knex.schema.dropTableIfExists('applicate');
   };
